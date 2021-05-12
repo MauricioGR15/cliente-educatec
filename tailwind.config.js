@@ -11,6 +11,7 @@ module.exports = {
           },
           violet: {
               DEFAULT: "#8A40A9",
+              dark: "#5F2D75"
           },
           mint: {
               DEFAULT: "#3DC58E",
@@ -19,6 +20,9 @@ module.exports = {
           blue: {
               DEFAULT: "#3E5B62",
           },
+          white: {
+              DEFAULT: '#EEEEEE'
+          }
       },
       fontFamily: {
         'work': 'Work Sans, sans-serif',
@@ -28,7 +32,9 @@ module.exports = {
   },
   
   variants: {
-      extend: {},
+      extend: {
+          backgroundColor: ['active'],
+      },
   },
   plugins: [],
 };
