@@ -17,7 +17,7 @@ const Login = () => {
     return (
         <div class="w-screen h-screen">
             <NavbarLogin />
-            <main class="w-full h-auto sm:h-5/6 flex items-start flex-wrap justify-center">
+            <main class="w-full h-auto md:h-5/6 flex items-start flex-wrap justify-center">
                 <div class="md:w-1/2 w-full flex flex-col  items-center space-y-16 my-4">
                     <h3 class="text-violet text-sans text-xl font-semibold">
                         ¿Eres nuevo en EducaTec?
