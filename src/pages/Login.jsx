@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import lottie from "lottie-web";
 import CoffeeComputer from "../animations/CoffeeComputer";
 import LoginSvg from "../assets/svg/Login.svg";
+import NavbarLogin from "../components/NavbarLogin";
+import Footer from "../components/Footer";
 
 const Login = () => {
     useEffect(() => {
@@ -10,28 +12,26 @@ const Login = () => {
             container: document.querySelector("#computer-coffee"),
             animationData: CoffeeComputer,
         });
-    }, [CoffeeComputer]);
+    }, []);
 
     return (
-        <div class="container">
-            <div class="h-24 w-full p-4 float-left">Logo</div>
-            <button class='w-auto h-auto bg-violet shadow-lg px-2 rounded-full 
-            absolute top-4 right-4 sm:hidden xs:block'>
-                <a href='#Ingresar' class='text-white text-sm'>
-                    Ingresar
-                </a>
-                
-            </button>
-            <div class="w-full grid grid-cols-1  md:grid-cols-2">
-                <div class="flex flex-col  items-center space-y-16 my-4">
+        <div class="w-screen h-screen">
+            <NavbarLogin />
+            <main class="w-full h-auto sm:h-5/6 flex items-start flex-wrap justify-center">
+                <div class="md:w-1/2 w-full flex flex-col  items-center space-y-16 my-4">
                     <h3 class="text-violet text-sans text-xl font-semibold">
                         ¿Eres nuevo en EducaTec?
                     </h3>
                     <div id="computer-coffee" className="w-96 h-auto" />
-                    <button class="h-14 w-40 p-4 bg-violet rounded-full shadow-xl focus:outline-none
+                    <button
+                        class="h-14 w-40 p-4 bg-violet rounded-full shadow-xl focus:outline-none
                     transition duration-500 ease-in-out transform hover:translate-y-1 hover:scale-110 
-                    hover:bg-violet-dark ">
-                        <Link to='/registro' class="text-white font-medium text-lg">
+                    hover:bg-violet-dark "
+                    >
+                        <Link
+                            to="/registro"
+                            class="text-white font-medium text-lg"
+                        >
                             Regístrate
                         </Link>
                     </button>
@@ -41,33 +41,45 @@ const Login = () => {
                         institucional
                     </p>
                 </div>
-                <div id='Ingresar' class="flex flex-col items-center space-y-16 my-4">
+
+                <div
+                    id="Ingresar"
+                    class=" md:w-1/2 w-full flex flex-col  items-center space-y-16 my-4"
+                >
                     <h3 class="text-blue text-sans text-xl font-semibold">
                         Si ya eres parte, ingresa ya!
                     </h3>
                     <img class="w-96" src={LoginSvg} />
-                    <input
-                        type="email"
-                        placeholder="Usuario"
-                        class="text-violet rounded-full shadow-md border-violet h-14 border-2 px-8 outline-none 
+                    <form class="w-72 flex flex-col items-center space-y-8">
+                        <input
+                            type="text"
+                            placeholder="No. de Control"
+                            class="text-violet rounded-full shadow-md border-violet h-14 w-full border-2 px-8 outline-none 
                         transition duration-500 ease-in-out transform hover:translate-y-1 hover:scale-110 
                         focus:translate-y-1 focus:scale-110"
-                    />
-                    <input
-                        type="password"
-                        placeholder="Contraseña"
-                        class="text-violet rounded-full shadow-md border-violet h-14 border-2 px-8 outline-none 
+                        />
+                        <input
+                            type="password"
+                            placeholder="Contraseña"
+                            class="text-violet rounded-full shadow-md border-violet h-14 w-full border-2 px-8 outline-none 
                         transition duration-500 ease-in-out transform hover:translate-y-1 hover:scale-110 
                         focus:translate-y-1 focus:scale-110"
-                    />
-                    <button class='h-14 w-40 p-4 rounded-full bg-blue focus:outline-none shadow-xl
-                    transition duration-500 ease-in-out transform hover:translate-y-1 hover:scale-110 hover:bg-mint'>
-                        <Link class='text-white font-medium text-xl'>
-                            Ingresar
-                        </Link>
-                    </button>
+                        />
+                        <button
+                            class="h-14 w-40 p-4 rounded-full bg-blue focus:outline-none shadow-xl
+                    transition duration-500 ease-in-out transform hover:translate-y-1 hover:scale-110 hover:bg-mint"
+                        >
+                            <Link
+                                to="/home"
+                                class="text-white font-medium text-xl"
+                            >
+                                Ingresar
+                            </Link>
+                        </button>
+                    </form>
                 </div>
-            </div>
+            </main>
+            <Footer/>
         </div>
     );
 };
