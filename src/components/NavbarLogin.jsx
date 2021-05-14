@@ -2,7 +2,7 @@ import React from "react";
 
 const NavbarLogin = () => {
     return (
-        <header class="h-32 md:h-1/6 w-full">
+        <header class="h-24 md:h-1/6 w-full">
             <div class="p-4 float-left">Logo</div>
             <button
                 class="w-auto h-auto bg-violet shadow-lg px-2 rounded-full 
