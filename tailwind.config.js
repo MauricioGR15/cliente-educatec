@@ -28,12 +28,18 @@ module.exports = {
         'work': 'Work Sans, sans-serif',
         'sans': 'Montserrat, sans-serif',
     },
-      extend: {},
+      extend: {
+        zIndex: {
+            "-1": "-1",
+          },
+      },
   },
   
   variants: {
       extend: {
           backgroundColor: ['active'],
+          borderColor: ['responsive', 'hover', 'focus', 'focus-within'],
+          
       },
   },
   plugins: [],
