@@ -6,6 +6,7 @@ import LoginSvg from "../assets/svg/Login.svg";
 import NavbarLogin from "../components/NavbarLogin";
 import Footer from "../components/Footer";
 import Wrapper from "../layout/Wrapper";
+import { useForm } from "react-hook-form";
 import Textfield from "../components/Textfield";
 
 const Login = () => {
@@ -21,7 +22,7 @@ const Login = () => {
             <NavbarLogin />
             <main class="w-full h-auto md:h-5/6 flex items-start flex-wrap justify-center">
                 <SeccionRegistrar />
-                <SeccionIngresar/>
+                <SeccionIngresar />
             </main>
             <Footer />
         </Wrapper>
@@ -51,32 +52,58 @@ const SeccionRegistrar = () => (
     </div>
 );
 
-const SeccionIngresar = () => (
-    <div
-        id="Ingresar"
-        class=" md:w-1/2 w-full flex flex-col  items-center space-y-16 my-4"
-    >
-        <h3 class="text-blue text-sans text-xl font-semibold">
-            Si ya eres parte, ingresa ya!
-        </h3>
-        <img class="w-96" src={LoginSvg} alt='Imagen referente al login'/>
-        <form class="w-72 flex flex-col items-center space-y-8">
-            <Textfield name='NoControl' type='text'>
-                No. de Control
-            </Textfield>
-            <Textfield name='Password' type='password'>
-                Contraseña
-            </Textfield>
-            <button
-                class="h-14 w-40 p-4 rounded-full bg-blue focus:outline-none shadow-xl
-                    transition duration-500 ease-in-out transform hover:translate-y-1 hover:scale-110 hover:bg-mint"
+const SeccionIngresar = () => {
+    const {
+        register,
+        handleSubmit,
+        formState: { errors }
+    } = useForm();
+    const onSubmit = (data) => {
+        console.log(data);
+        console.log(errors);
+    };
+
+    return (
+        <div
+            id="Ingresar"
+            class=" md:w-1/2 w-full flex flex-col  items-center space-y-16 my-4"
+        >
+            <h3 class="text-blue text-sans text-xl font-semibold">
+                Si ya eres parte, ingresa ya!
+            </h3>
+            <img class="w-96" src={LoginSvg} alt="Imagen referente al login" />
+            <form
+                onSubmit={handleSubmit(onSubmit)}
+                class="w-72 flex flex-col items-center space-y-8"
             >
-                <Link to="/home" class="text-white font-medium text-xl">
-                    Ingresar
-                </Link>
-            </button>
-        </form>
-    </div>
-);
+                <Textfield
+                    name="noControl"
+                    register={register}
+                    validations={{ required: 'Este campo es obligatorio' }}
+                    type="text"
+                    errors={errors}
+                >
+                    No. de Control
+                </Textfield>
+                <Textfield
+                    name="password"
+                    type="password"
+                    register={register}
+                    validations={{ required: 'Este campo es obligaorio' }}
+                    errors={errors}
+                >
+                    Contraseña
+                </Textfield>
+                <button
+                    type="submit"
+                    class="h-14 w-40 p-4 rounded-full bg-blue focus:outline-none shadow-xl
+                    transition duration-500 ease-in-out transform hover:translate-y-1 hover:scale-110 hover:bg-mint"
+                >
+                    <p class="text-white font-medium text-xl">Ingresar</p>
+                </button>
+            </form>
+        </div>
+    );
+};
 
 export default Login;
