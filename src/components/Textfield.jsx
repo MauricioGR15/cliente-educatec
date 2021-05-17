@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from 'prop-types'
 
-const Textfield = ({ name, type, children }) => {
+const Textfield = ({ name, type, register, errors, validations, children }) => {
     
 
     return (
@@ -13,10 +13,11 @@ const Textfield = ({ name, type, children }) => {
                 {children}
             </label>
             <input
-                name={name}
+                {...register(name, validations)}
                 type={type}
                 class=" rounded-full shadow-md border-violet h-14 w-full border-2 px-6 outline-none"
             />
+            {errors[name] && <p class='text-error font-work text-xs px-4'>{errors[name].message}</p>}
         </div>
     );
 };
@@ -25,6 +26,9 @@ const Textfield = ({ name, type, children }) => {
 Textfield.propTypes = {
     name: PropTypes.string.isRequired,
     type: PropTypes.string,
+    register: PropTypes.any.isRequired,
+    errors: PropTypes.any,
+    validations: PropTypes.object
 }
 
 export default Textfield;

@@ -22,7 +22,10 @@ module.exports = {
           },
           white: {
               DEFAULT: '#EEEEEE'
-          }
+          },
+          error: {
+              DEFAULT: "#EE1212"
+          },
       },
       fontFamily: {
         'work': 'Work Sans, sans-serif',
