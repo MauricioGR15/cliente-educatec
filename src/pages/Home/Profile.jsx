@@ -1,7 +1,7 @@
 import React from 'react'
 import Navbar from '../../components/Navbar'
 
-const HomeFeed = () => {
+const Profile = () => {
     return (
         <div>
             <Navbar/>
@@ -9,4 +9,4 @@ const HomeFeed = () => {
     )
 }
 
-export default HomeFeed
+export default Profile
