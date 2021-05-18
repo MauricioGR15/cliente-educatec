@@ -7,28 +7,28 @@ import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
     return (
-        <nav class="rounded-r-full bg-violet absolute left-0 top-2 px-4 sm:px-0 shadow-2xl">
+        <nav className="rounded-r-full bg-violet fixed left-0 top-2 px-4 sm:px-0 shadow-2xl">
             <ul className="flex justify-end items-center pr-8">
                 <li>
-                    <NavLink to='/perfil' class="flex items-center p-3">
+                    <NavLink to='/perfil' className="flex items-center p-3">
                         <img
-                            class="rounded-full border-2 border-mint sm:mx-2 w-8"
+                            className="rounded-full border-2 border-mint sm:mx-2 w-8"
                             src={ProfilePhoto}
                             alt="Foto de perfil"
                         />
-                        <p class="text-white hidden sm:block">
+                        <p className="text-white hidden sm:block">
                             Mauricio Garcia
                         </p>
                     </NavLink>
                 </li>
                 <NavItem label="Home" route={"/home"}>
-                    <HomeIcon class="fill-current text-mint" />
+                    <HomeIcon className="fill-current text-mint" />
                 </NavItem>
                 <NavItem label="Mochila" route="/mochila">
-                    <BackpackIcon class="fill-current text-mint" />
+                    <BackpackIcon className="fill-current text-mint" />
                 </NavItem>
                 <NavItem label="Foro" route="/foro">
-                    <ForoIcon class="fill-current text-mint" />
+                    <ForoIcon className="fill-current text-mint" />
                 </NavItem>
             </ul>
         </nav>

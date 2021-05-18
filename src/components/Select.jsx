@@ -12,7 +12,7 @@ const Select = ({ name, label, options, register, errors, validations }) => {
             <select
                 name={name}
                 {...register(name, validations)}
-                class=" rounded-full shadow-md border-violet h-14 w-full border-2 px-6 outline-none"
+                className=" rounded-full shadow-md border-violet h-14 w-full border-2 px-6 outline-none"
             >
                 {options.map((item, key) => (
                     <option key={key} value={item}>
@@ -20,7 +20,7 @@ const Select = ({ name, label, options, register, errors, validations }) => {
                     </option>
                 ))}
             </select>
-            {errors[name]  && <p class='text-error font-work text-xs px-4'>{errors[name].message}</p>}
+            {errors[name]  && <p className='text-error font-work text-xs px-4'>{errors[name].message}</p>}
         </div>
     );
 };

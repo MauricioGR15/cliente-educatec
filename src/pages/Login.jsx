@@ -20,7 +20,7 @@ const Login = () => {
     return (
         <Wrapper>
             <NavbarLogin />
-            <main class="w-full h-auto md:h-5/6 flex items-start flex-wrap justify-center">
+            <main className="w-full h-auto md:h-5/6 flex items-start flex-wrap justify-center">
                 <SeccionRegistrar />
                 <SeccionIngresar />
             </main>
@@ -30,21 +30,21 @@ const Login = () => {
 };
 
 const SeccionRegistrar = () => (
-    <div class="md:w-1/2 w-full flex flex-col  items-center space-y-16 my-4">
-        <h3 class="text-violet text-sans text-xl font-semibold">
+    <div className="md:w-1/2 w-full flex flex-col  items-center space-y-16 my-4">
+        <h3 className="text-violet text-sans text-xl font-semibold">
             ¿Eres nuevo en EducaTec?
         </h3>
         <div id="computer-coffee" className="w-96 h-auto" />
         <button
-            class="h-14 w-40 p-4 bg-violet rounded-full shadow-xl focus:outline-none
+            className="h-14 w-40 p-4 bg-violet rounded-full shadow-xl focus:outline-none
                     transition duration-500 ease-in-out transform hover:translate-y-1 hover:scale-110 
                     hover:bg-violet-dark "
         >
-            <Link to="/registro" class="text-white font-medium text-lg">
+            <Link to="/registro" className="text-white font-medium text-lg">
                 Regístrate
             </Link>
         </button>
-        <p class="text-center text-blue text-work">
+        <p className="text-center text-blue text-work">
             Solo necesitas tu correo
             <br />
             institucional
@@ -66,15 +66,15 @@ const SeccionIngresar = () => {
     return (
         <div
             id="Ingresar"
-            class=" md:w-1/2 w-full flex flex-col  items-center space-y-16 my-4"
+            className=" md:w-1/2 w-full flex flex-col  items-center space-y-16 my-4"
         >
-            <h3 class="text-blue text-sans text-xl font-semibold">
+            <h3 className="text-blue text-sans text-xl font-semibold">
                 Si ya eres parte, ingresa ya!
             </h3>
-            <img class="w-96" src={LoginSvg} alt="Imagen referente al login" />
+            <img className="w-96" src={LoginSvg} alt="Imagen referente al login" />
             <form
                 onSubmit={handleSubmit(onSubmit)}
-                class="w-72 flex flex-col items-center space-y-8"
+                className="w-72 flex flex-col items-center space-y-8"
             >
                 <Textfield
                     name="noControl"
@@ -96,10 +96,10 @@ const SeccionIngresar = () => {
                 </Textfield>
                 <button
                     type="submit"
-                    class="h-14 w-40 p-4 rounded-full bg-blue focus:outline-none shadow-xl
+                    className="h-14 w-40 p-4 rounded-full bg-blue focus:outline-none shadow-xl
                     transition duration-500 ease-in-out transform hover:translate-y-1 hover:scale-110 hover:bg-mint"
                 >
-                    <p class="text-white font-medium text-xl">Ingresar</p>
+                    <p className="text-white font-medium text-xl">Ingresar</p>
                 </button>
             </form>
         </div>
