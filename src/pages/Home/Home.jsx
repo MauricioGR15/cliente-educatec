@@ -6,7 +6,7 @@ const Home = ({children}) => {
     return (
         <Wrapper>
             <Navbar />
-            <main className=' w-full mt-20 p-2 pt-0'>
+            <main className=' w-full h-auto pt-20 p-2 '>
                 {children}
             </main>
         </Wrapper>

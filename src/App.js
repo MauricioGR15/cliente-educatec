@@ -14,8 +14,15 @@ import Backpack from "./pages/Home/Backpack";
 import Forum from "./pages/Home/Forum";
 import GlobalState from "./context/GlobalState";
 import globalContext from "./context/globalContext";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+import Modal from './components/Modal/Modal'
+import useModal from './components/Modal/useModal'
 
 function App() {
+
+    const { isShowing, toggle } = useModal()
+
     return (
         <div className="App">
             <GlobalState>
@@ -34,6 +41,17 @@ function App() {
                     </Switch>
                 </Router>
             </GlobalState>
+            <ToastContainer />
+            <button onClick={toggle}>
+                Modaaal
+            </button>
+            <Modal
+                labelAccept={'Aceptar'}
+                title={'El titulo va aqui'}
+                description={'Aqui va la descripcion del componente modal'}
+                isShowing={isShowing}
+                hide={toggle}
+            />
         </div>
     );
 }

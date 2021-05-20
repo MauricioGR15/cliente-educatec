@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { Redirect, Link, useHistory, useLocation } from "react-router-dom";
+import {  Link, useHistory, useLocation } from "react-router-dom";
 import lottie from "lottie-web";
 import CoffeeComputer from "../animations/CoffeeComputer";
 import LoginSvg from "../assets/svg/Login.svg";
@@ -61,13 +61,16 @@ const SeccionRegistrar = () => (
 );
 
 const SeccionIngresar = ({login, history}) => {
+
+    
+   
+
     const {
         register,
         handleSubmit,
         formState: { errors },
     } = useForm();
     const onSubmit = (data) => {
-        console.log(data);
         login(data, history)
     };
 
@@ -106,6 +109,7 @@ const SeccionIngresar = ({login, history}) => {
                 >
                     Contraseña
                 </Textfield>
+               
                 <button
                     type="submit"
                     className="h-14 w-40 p-4 rounded-full bg-blue focus:outline-none shadow-xl
