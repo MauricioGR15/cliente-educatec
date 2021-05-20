@@ -38,7 +38,7 @@ const Register = () => {
 
 const ImagenInvitacion = () => (
     <div className="md:w-1/2 w-full flex flex-col  items-center space-y-16 my-4">
-        <RegistroSvg className="w-80 md:w-96" />
+        <RegistroSvg className="w-80 md:w-96 h-auto" />
         <p className="text-violet text-work font-medium">
             Regístrate para comenzar a compartir <br />
             tus documentos y recibir feedback

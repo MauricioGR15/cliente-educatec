@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useEffect } from "react";
+import { Redirect, Link, useHistory, useLocation } from "react-router-dom";
 import lottie from "lottie-web";
 import CoffeeComputer from "../animations/CoffeeComputer";
 import LoginSvg from "../assets/svg/Login.svg";
@@ -8,8 +8,16 @@ import Footer from "../components/Footer";
 import Wrapper from "../layout/Wrapper";
 import { useForm } from "react-hook-form";
 import Textfield from "../components/Textfield";
+import globalContext from "../context/globalContext";
 
 const Login = () => {
+
+    const GlobalContext = useContext(globalContext);
+    const { login } = GlobalContext;
+    const history = useHistory()
+
+
+
     useEffect(() => {
         lottie.loadAnimation({
             container: document.querySelector("#computer-coffee"),
@@ -22,7 +30,7 @@ const Login = () => {
             <NavbarLogin />
             <main className="w-full h-auto md:h-5/6 flex items-start flex-wrap justify-center">
                 <SeccionRegistrar />
-                <SeccionIngresar />
+                <SeccionIngresar login={login} history={history} />
             </main>
             <Footer />
         </Wrapper>
@@ -52,15 +60,15 @@ const SeccionRegistrar = () => (
     </div>
 );
 
-const SeccionIngresar = () => {
+const SeccionIngresar = ({login, history}) => {
     const {
         register,
         handleSubmit,
-        formState: { errors }
+        formState: { errors },
     } = useForm();
     const onSubmit = (data) => {
         console.log(data);
-        console.log(errors);
+        login(data, history)
     };
 
     return (
@@ -71,15 +79,19 @@ const SeccionIngresar = () => {
             <h3 className="text-blue text-sans text-xl font-semibold">
                 Si ya eres parte, ingresa ya!
             </h3>
-            <img className="w-96" src={LoginSvg} alt="Imagen referente al login" />
+            <img
+                className="w-96"
+                src={LoginSvg}
+                alt="Imagen referente al login"
+            />
             <form
                 onSubmit={handleSubmit(onSubmit)}
                 className="w-72 flex flex-col items-center space-y-8"
             >
                 <Textfield
-                    name="noControl"
+                    name="matricula"
                     register={register}
-                    validations={{ required: 'Este campo es obligatorio' }}
+                    validations={{ required: "Este campo es obligatorio" }}
                     type="text"
                     errors={errors}
                 >
@@ -89,7 +101,7 @@ const SeccionIngresar = () => {
                     name="password"
                     type="password"
                     register={register}
-                    validations={{ required: 'Este campo es obligaorio' }}
+                    validations={{ required: "Este campo es obligaorio" }}
                     errors={errors}
                 >
                     Contraseña
