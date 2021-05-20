@@ -17,6 +17,7 @@ const PostHome = ({ post }) => {
             <DescriptionCard descripcion={post.descripcion} />
             <DocumentosAnexados documentos={post.documentos} />
             <FooterCard
+                id={post.id}
                 cantComentarios={post.cantComentarios}
                 util={post.util}
                 cantNoUtil={post.cantNoUtil}
@@ -79,7 +80,9 @@ const DocumentosAnexados = ({ documentos }) => {
     );
 };
 
-const FooterCard = ({ cantComentarios, util, cantUtil, cantNoUtil }) => {
+const FooterCard = ({ id, cantComentarios, util, cantUtil, cantNoUtil }) => {
+    let aceptacion = Math.round((cantUtil / (cantUtil + cantNoUtil)) * 100);
+
     return (
         <div className="pt-4 pr-4 flex justify-between">
             <button
@@ -93,19 +96,19 @@ const FooterCard = ({ cantComentarios, util, cantUtil, cantNoUtil }) => {
             <div className="flex gap-4">
                 <button className="focus:outline-none transition duration-1000 ease-in-out transform hover:scale-110">
                     {util === 2 ? (
-                        <UtilIcon className="fill-current text-mint animation duration-1500 ease-in-out hover:text-gray" />
+                        <UtilIcon className="fill-current text-mint animation duration-1500 ease-in-out" />
                     ) : (
                         <UtilIcon className="fill-current text-gray animation duration-1500 ease-in-out hover:text-mint" />
                     )}
                 </button>
                 <button className="focus:outline-none transition duration-1000 ease-in-out transform hover:scale-110">
                     {util === 0 ? (
-                        <NoUtilIcon className="fill-current text-mint-dark animation duration-1500 ease-in-out hover:text-mint-gray" />
+                        <NoUtilIcon className="fill-current text-mint-dark animation duration-1500 ease-in-out" />
                     ) : (
                         <NoUtilIcon className="fill-current text-gray animation duration-1500 ease-in-out hover:text-mint-dark" />
                     )}
                 </button>
-                <p>{cantUtil / (cantUtil + cantNoUtil)}</p>
+                <p>{aceptacion}</p>
             </div>
         </div>
     );
