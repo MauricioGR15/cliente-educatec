@@ -48,11 +48,7 @@ function PrivateRoute({ children, ...rest }) {
         <Route
             {...rest}
             render={({ location }) =>
-                session ? (
-                    children
-                ) : (
-                    <Redirect to={'/'} />
-                )
+                session ? children : <Redirect to={"/"} />
             }
         />
     );
