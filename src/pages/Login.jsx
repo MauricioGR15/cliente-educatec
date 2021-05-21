@@ -92,7 +92,7 @@ const SeccionIngresar = ({login, history}) => {
                 className="w-72 flex flex-col items-center space-y-8"
             >
                 <Textfield
-                    name="matricula"
+                    name="nocontrol"
                     register={register}
                     validations={{ required: "Este campo es obligatorio" }}
                     type="text"
