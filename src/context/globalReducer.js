@@ -7,6 +7,11 @@ export default (state, action) => {
                 token: localStorage.getItem("Token"),
                 session: true,
             };
+        case "OBTENER_USUARIO":
+            return{
+                ...state,
+                usuario: action.payload
+            }
         case "SELECCIONAR_POST":
             return {
                 ...state,

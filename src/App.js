@@ -16,8 +16,6 @@ import GlobalState from "./context/GlobalState";
 import globalContext from "./context/globalContext";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import Modal from './components/Modal/Modal'
-import useModal from './components/Modal/useModal'
 
 function App() {
     return (
@@ -52,7 +50,7 @@ function PrivateRoute({ children, ...rest }) {
     return (
         <Route
             {...rest}
-            render={({ location }) =>
+            render={() =>
                 session ? children : <Redirect to={"/"} />
             }
         />

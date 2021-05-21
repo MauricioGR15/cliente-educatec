@@ -1,7 +1,8 @@
 import React, { useReducer } from "react";
 import globalContext from "./globalContext";
 import globalReducer from "./globalReducer";
-import Axios, { CSRF_Cookies } from "../Axios";
+import Axios, { getCSRFCookie, addHeaders, addAuthHeader } from "../Axios";
+import { toast } from "react-toastify";
 
 const GlobalState = (props) => {
     const initialState = {
@@ -15,8 +16,12 @@ const GlobalState = (props) => {
 
     const login = async (usuario, history) => {
         await getCSRFCookie();
-        addHeaders(state.token);
-        await signIn(dispatch, usuario, history);
+        addHeaders();
+        await signIn(dispatch, usuario);
+        const token = localStorage.getItem('Token')
+        addAuthHeader(token)
+        await getUser(dispatch, history)
+
     };
 
     return (
@@ -33,38 +38,34 @@ const GlobalState = (props) => {
     );
 };
 
-function addHeaders(token) {
-    if (document.cookie) {
-        Axios.defaults.headers.common["X-XSRF-COOKIE"] =
-            getCookie("XSRF-TOKEN");
-    }
 
-    if (token) {
-        Axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-    } else {
-        delete Axios.defaults.headers.common["Authorization"]
-    }
-}
-
-function getCookie(name) {
-    var re = new RegExp(name + "=([^;]+)");
-    var value = re.exec(document.cookie);
-    return value != null ? unescape(value[1]) : null;
-}
-
-async function getCSRFCookie() {
-    Axios.get("/sanctum/csrf-cookie");
-}
-
-const signIn = async (dispatch, usuario, history) => {
-    Axios.post("api/login", usuario).then((response) => {
-        dispatch({
-            type: "INICIAR_SESION",
-            payload: response.data,
+const signIn = async (dispatch, usuario) => {
+    Axios.post("api/login", usuario)
+        .then((response) => {
+            dispatch({
+                type: "INICIAR_SESION",
+                payload: response.data,
+            }); 
+        })
+        .catch(({ response }) => {
+            if (response.data.mensaje) {
+                toast.error(response.data.mensaje);
+            } else {
+                toast.error("El número de control no sido registrado");
+            }
         });
-
-        history.push("/home");
-    });
 };
+
+const getUser = async (dispatch, history) => {
+    Axios.get('api/user')
+    .then(({data})=> {
+        dispatch({
+            type: "OBTENER_USUARIO",
+            payload: data
+        })
+        history.push("/home");
+    })
+}
+
 
 export default GlobalState;

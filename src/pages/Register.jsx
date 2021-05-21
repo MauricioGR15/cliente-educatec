@@ -1,26 +1,20 @@
-import React from "react";
-import {ReactComponent as RegistroSvg} from "../assets/svg/Sharing.svg";
+import React, { useEffect, useState } from "react";
+import { ReactComponent as RegistroSvg } from "../assets/svg/Sharing.svg";
 import Footer from "../components/Footer";
 import NavbarLogin from "../components/NavbarLogin";
 import Wrapper from "../layout/Wrapper";
 import Textfield from "../components/Textfield";
 import Select from "../components/Select";
 import { useForm } from "react-hook-form";
+import { registerUser } from "../controllers/SessionController";
+import { useHistory } from "react-router";
 
-const carreras = [
-    "",
-    "Sistemas computacionales",
-    "Bioquímica",
-    "Mecatrónica",
-    "Mecánica",
-];
 const semestres = ["", 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
 const Register = () => {
     return (
         <Wrapper>
             <NavbarLogin />
-
             <main className="w-full h-auto md:h-5/6 flex items-start flex-wrap justify-center">
                 <ImagenInvitacion />
                 <div className="md:w-1/2 w-full flex flex-col  items-center space-y-4 md:space-y-16 my-4">
@@ -54,9 +48,11 @@ const Formulario = () => {
         getValues,
     } = useForm();
 
-    const onSubmit = (data) => {
-        console.log(errors);
+    const history = useHistory();
+
+    const onSubmit = async (data) => {
         console.log(data);
+        await registerUser(data, history)
     };
 
     return (
@@ -86,7 +82,7 @@ const Formulario = () => {
                 </div>
                 <div className="col-span-full">
                     <Textfield
-                        name={"correo"}
+                        name={"email"}
                         type="email"
                         register={register}
                         errors={errors}
@@ -143,7 +139,7 @@ const Formulario = () => {
                         Confirmar contraseña
                     </Textfield>
                 </div>
-                <div className="col-span-full md:col-span-9">
+                {/* <div className="col-span-full md:col-span-9">
                     <Select
                         name={"carrera"}
                         options={carreras}
@@ -152,11 +148,11 @@ const Formulario = () => {
                         errors={errors}
                         validations={{ required: "Seleccione una opción" }}
                     />
-                </div>
-                <div className="col-span-6 md:col-span-3">
+                </div> */}
+                <div className="col-span-6">
                     <Select
                         name={"semestre"}
-                        label="Sem"
+                        label="Semestre"
                         options={semestres}
                         register={register}
                         errors={errors}
