@@ -6,10 +6,16 @@ const Axios = axios.create(
         baseURL :'http://localhost:8000/',
         headers : {
             'Accept' : 'application/json',
-            'X-XSRF-COOKIE': document.cookie
+            'X-XSRF-COOKIE': getCookie("XSRF-TOKEN")
         }
     }
 )
+
+function getCookie(name) {
+    var re = new RegExp(name + "=([^;]+)");
+    var value = re.exec(document.cookie);
+    return value != null ? unescape(value[1]) : null;
+}
 
 
 export default Axios;

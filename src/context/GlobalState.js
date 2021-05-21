@@ -15,7 +15,7 @@ const GlobalState = (props) => {
 
     const login = async (usuario, history) => {
         await getCSRFCookie();
-        addCookieHeader();
+        addHeaders(state.token);
         await signIn(dispatch, usuario, history);
     };
 
@@ -33,10 +33,17 @@ const GlobalState = (props) => {
     );
 };
 
-function addCookieHeader() {
-    if (document.cookie)
+function addHeaders(token) {
+    if (document.cookie) {
         Axios.defaults.headers.common["X-XSRF-COOKIE"] =
             getCookie("XSRF-TOKEN");
+    }
+
+    if (token) {
+        Axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+    } else {
+        delete Axios.defaults.headers.common["Authorization"]
+    }
 }
 
 function getCookie(name) {
