@@ -20,9 +20,6 @@ import Modal from './components/Modal/Modal'
 import useModal from './components/Modal/useModal'
 
 function App() {
-
-    const { isShowing, toggle } = useModal()
-
     return (
         <div className="App">
             <GlobalState>
@@ -42,16 +39,6 @@ function App() {
                 </Router>
             </GlobalState>
             <ToastContainer />
-            <button onClick={toggle}>
-                Modaaal
-            </button>
-            <Modal
-                labelAccept={'Aceptar'}
-                title={'El titulo va aqui'}
-                description={'Aqui va la descripcion del componente modal'}
-                isShowing={isShowing}
-                hide={toggle}
-            />
         </div>
     );
 }
