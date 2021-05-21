@@ -1,8 +1,16 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { BotonNuevo } from "../../components/Botones";
 import { ReactComponent as EmptySvg } from "../../assets/svg/Empty.svg";
+import { getDocumentos} from '../../controllers/BackpackController'
 
 const Backpack = () => {
+
+    const [documentos, setDocumentos] = useState([])
+
+    useEffect(() => {
+        setDocumentos(getDocumentos());
+    }, [])
+
     return (
         <div>
             <div className="w-full flex items-center gap-16 px-4">
