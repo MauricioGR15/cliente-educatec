@@ -27,7 +27,12 @@ module.exports = {
                 DEFAULT: "#EE1212",
             },
             gray: {
-                DEFAULT: "#CBCBCB"
+                DEFAULT: "#CBCBCB",
+                light: '#EFEFEF',
+            },
+            red: {
+                DEFAULT: '#EB432A',
+                dark: '#B83521'
             }
         },
         fontFamily: {
@@ -58,6 +63,7 @@ module.exports = {
                 "active",
             ],
             borderWidth: ["hover", "focus", "active"],
+            fontWeight: ['hover', 'focus'],
         },
     },
     plugins: [],
