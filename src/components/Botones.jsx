@@ -1,10 +1,10 @@
 import React from "react";
 import {ReactComponent as AddIcon} from '../assets/icons/AddIcon.svg'
 
-export const BotonNuevo = () => {
+export const BotonNuevo = ({onClick}) => {
     return (
         <button
-            type="submit"
+            onClick={onClick}
             className="h-auto w-auto py-3 px-4 rounded-full bg-blue focus:outline-none shadow-xl flex
                     transition duration-500 ease-in-out  hover:bg-black"
         >
