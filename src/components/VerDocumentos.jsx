@@ -10,7 +10,7 @@ import {
 import { toast } from "react-toastify";
 import Axios from "../Axios";
 
-const VerDocumentos = ({ documentos, toggleEliminar, setSelected }) => {
+const VerDocumentos = ({ documentos, toggleEliminar, togglePost,setSelected }) => {
     return (
         <div className="w-full p-10">
             <div className="p-2 text-blue font-semibold grid grid-cols-12 border-b border-violet">
@@ -25,6 +25,7 @@ const VerDocumentos = ({ documentos, toggleEliminar, setSelected }) => {
                         key={item.id}
                         item={item}
                         toggleEliminar={toggleEliminar}
+                        togglePost={togglePost}
                         setSelected={setSelected}
                     />
                 );
@@ -33,11 +34,16 @@ const VerDocumentos = ({ documentos, toggleEliminar, setSelected }) => {
     );
 };
 
-const FilaTabla = ({ item, toggleEliminar, setSelected }) => {
+const FilaTabla = ({ item, toggleEliminar, setSelected, togglePost }) => {
     const onDeleteClick = () => {
         toggleEliminar();
         setSelected(item.id);
     };
+
+    const onPostClick = () => {
+        togglePost();
+        setSelected(item.id);
+    }
 
     const onDownloadClick = () => {
         console.log('llega');
@@ -74,7 +80,10 @@ const FilaTabla = ({ item, toggleEliminar, setSelected }) => {
                     <DownloadIcon  className="fill-current text-gray animation duration-500 ease-in-out hover:text-mint-dark" />
                 </button>
                 {item.privado && (
-                    <button className="h-6 w-6  focus:outline-none place-self-end">
+                    <button 
+                        onClick={() => onPostClick()}
+                        className="h-6 w-6  focus:outline-none place-self-end"
+                    >
                         <ShareIcon className="fill-current text-mint animation duration-500 ease-in-out hover:text-mint-dark" />
                     </button>
                 )}
