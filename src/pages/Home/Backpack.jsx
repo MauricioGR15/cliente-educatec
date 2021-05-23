@@ -5,9 +5,10 @@ import { ReactComponent as LoadingIcon } from "../../assets/icons/LoadingIcon.sv
 import useModal from "../../components/Modal/useModal";
 import Axios from "../../Axios";
 import { sortArrayAlphabetically } from "../../helpers/Util";
-import VerDocumentos, { ModalEliminar } from "../../components/VerDocumentos";
+import VerDocumentos from "../../components/VerDocumentos";
 import ModalNuevoDocumento from "../../components/ModalNuevoDocumento";
 import ModalPost from "../../components/ModalPost";
+import ModalEliminar from '../../components/ModalEliminar'
 
 const Backpack = () => {
     const { isShowing, toggle } = useModal();
