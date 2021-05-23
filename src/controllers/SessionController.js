@@ -1,13 +1,11 @@
 import Axios from "../Axios";
 import { toast } from "react-toastify";
-import { object } from "prop-types";
 
 export const registerUser = async (datos, history) => {
     const body = { ...datos, carrera: 1 };
 
     Axios.post("api/registro", body)
         .then(({ data }) => {
-            console.log(data.response);
             toast.success("Te has registrado con éxito");
             history.push("/");
         })
@@ -27,7 +25,6 @@ export const uploadFile = async (datos, toggle, reset) => {
 
     const formData = new FormData();
     Object.keys(body).forEach((key) => formData.append(key, body[key]));
-    console.log(formData);
 
     Axios.post("api/mochila/archivo", formData)
         .then(({ data }) => {

@@ -4,19 +4,16 @@ import { ReactComponent as BackpackIcon } from "../assets/icons/BackpackIcon.svg
 import { ReactComponent as ForoIcon } from "../assets/icons/ForoIcon.svg";
 import ProfilePhoto from "../assets/images/profile.jpg";
 import { NavLink } from "react-router-dom";
-import globalState from '../context/globalContext'
+import globalState from "../context/globalContext";
 
 const Navbar = () => {
-
-    const {usuario} = useContext(globalState);
-    
-    console.log(usuario);
+    const { usuario } = useContext(globalState);
 
     return (
         <nav className="rounded-r-full bg-violet fixed left-0 top-2 px-4 sm:px-0 shadow-2xl">
             <ul className="flex justify-end items-center pr-8">
                 <li>
-                    <NavLink to='/perfil' className="flex items-center p-3">
+                    <NavLink to="/perfil" className="flex items-center p-3">
                         <img
                             className="rounded-full border-2 border-mint sm:mx-2 w-8"
                             src={usuario.Foto}
