@@ -6,7 +6,7 @@ import { ReactComponent as CommentIcon } from "../assets/icons/CommentIcon.svg";
 import Axios from "../Axios";
 import { toast } from "react-toastify";
 import { useLocation } from "react-router-dom";
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
 
 export const Post = ({ post, setPosts }) => {
     return (
@@ -23,17 +23,69 @@ export const Post = ({ post, setPosts }) => {
 
             <FooterCard
                 id={post.id}
-                cantComentarios={post.numComentarios ? post.numComentarios : post.Comentarios.length}
+                cantComentarios={post.numComentarios}
                 util={post.calificaciones.votoPropio}
                 cantNoUtil={post.calificaciones.votosMalos}
                 cantUtil={post.calificaciones.votosBuenos}
                 setPosts={setPosts}
+                comentarios={post.Comentarios}
             />
         </ContainerCard>
     );
 };
 
-const ContainerCard = ({ children }) => (
+export const Comment = ({ comment }) => { 
+    
+    let aceptacion = Math.round((comment.votosBuenos / (comment.votosBuenos + comment.votosMalos)) * 100);
+
+    return (
+    <ContainerCard>
+        <div className="w-full flex justify-between border-gray py-1">
+            <div className="flex items-center">
+                <img
+                    className="rounded-full border-2 border-mint sm:mx-2 w-8"
+                    src={comment.autor.foto}
+                    alt={`Foto de perfil de ${comment.autor.nombre}`}
+                />
+                <p className="text-blue text-left font-semibold text-sm sm:text-base">
+                    {`${comment.autor.nombre}`}
+                </p>
+            </div>
+            <p className="text-xs xl:text-xs text-mint-dark">{comment.fecha}</p>
+        </div>
+        <div className="text-blue font-work font-medium py-2">
+            {comment.texto}
+        </div>
+
+        <div className="pt-4 pr-4 flex justify-end">
+            <div className="flex gap-4">
+                <button
+                    onClick={() => {}}
+                    className="focus:outline-none transition duration-1000 ease-in-out transform hover:scale-110"
+                >
+                    {comment.votoPropio === 2 ? (
+                        <UtilIcon className="fill-current text-mint animation duration-1500 ease-in-out" />
+                    ) : (
+                        <UtilIcon className="fill-current text-gray animation duration-1500 ease-in-out hover:text-mint" />
+                    )}
+                </button>
+                <button
+                    className="focus:outline-none transition duration-1000 ease-in-out transform hover:scale-110"
+                    onClick={() => {}}
+                >
+                    {comment.votoPropio === 0 ? (
+                        <NoUtilIcon className="fill-current text-mint-dark animation duration-1500 ease-in-out" />
+                    ) : (
+                        <NoUtilIcon className="fill-current text-gray animation duration-1500 ease-in-out hover:text-mint-dark" />
+                    )}
+                </button>
+                <p>{isNaN(aceptacion) ? "0%" : `${aceptacion}%`}</p>
+            </div>
+        </div>
+    </ContainerCard>
+)};
+
+export const ContainerCard = ({ children }) => (
     <div className="w-full p-3  h-auto rounded-lg shadow">{children}</div>
 );
 
@@ -123,9 +175,9 @@ const FooterCard = ({
     cantUtil,
     cantNoUtil,
     setPosts,
+    comentarios,
 }) => {
-
-    const location  = useLocation();
+    const location = useLocation();
 
     let aceptacion = Math.round((cantUtil / (cantUtil + cantNoUtil)) * 100);
 
@@ -197,16 +249,29 @@ const FooterCard = ({
 
     return (
         <div className="pt-4 pr-4 flex justify-between">
-            <Link to={`${location.pathname}/${id}`}>
-                <button
+            {cantComentarios === undefined ? (
+                <div
                     className="flex focus:outline-none items-center
+                    select-none
                     transition duration-500 ease-in-out 
                     transform hover:translate-y-1 hover:translate-x-1 hover:scale-110"
                 >
                     <CommentIcon className="fill-current text-mint" />
-                    <span className="text-xs text-blue pl-1">{`${cantComentarios}`}</span>
-                </button>
-            </Link>
+                    <span className="text-xs text-blue pl-1">{`${comentarios.length} comentarios`}</span>
+                </div>
+            ) : (
+                <Link to={`${location.pathname}/${id}`}>
+                    <button
+                        disabled={comentarios ? false : true}
+                        className="flex focus:outline-none items-center
+                    transition duration-500 ease-in-out 
+                    transform hover:translate-y-1 hover:translate-x-1 hover:scale-110"
+                    >
+                        <CommentIcon className="fill-current text-mint" />
+                        <span className="text-xs text-blue pl-1">{`${cantComentarios} comentarios`}</span>
+                    </button>
+                </Link>
+            )}
 
             <div className="flex gap-4">
                 <button

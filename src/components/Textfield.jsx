@@ -32,11 +32,10 @@ export const TextArea = ({ name, register, errors, validations, children }) => {
             </label>
             <textarea
                 id={name}
-                rows={20}
-                cols={40}
+                rows={8}
                 {...register(name, validations)}
                 type="text"
-                className="flex align-top rounded-2xl shadow-md border-violet h-48 w-full border-2 px-6 outline-none transition duration-500 ease-in-out hover:border-violet-dark hover:border-2"
+                className="flex align-top rounded-2xl shadow-md border-violet h-auto w-full border-2 px-6 outline-none transition duration-500 ease-in-out hover:border-violet-dark hover:border-2"
             />
             {errors[name] && (
                 <p className="text-error font-work text-xs px-4">
