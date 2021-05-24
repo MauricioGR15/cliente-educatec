@@ -8,25 +8,28 @@ import Select from "../components/Select";
 import { useForm } from "react-hook-form";
 import { registerUser } from "../controllers/SessionController";
 import { useHistory } from "react-router";
+import MainCenterItems from "../layout/MainCenterItems";
 
 const semestres = ["", 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
 const Register = () => {
     return (
-        <Wrapper>
+        <>
             <NavbarLogin />
-            <main className="w-full h-auto md:h-5/6 flex items-start flex-wrap justify-center">
-                <ImagenInvitacion />
-                <div className="md:w-1/2 w-full flex flex-col  items-center space-y-4 md:space-y-16 my-4">
-                    <h2 className="text-center text-blue text-sans text-xl font-semibold">
-                        Llena el formulario para iniciar <br />
-                        en EducaTec
-                    </h2>
-                    <Formulario />
-                </div>
-            </main>
+            <Wrapper>
+                <MainCenterItems>
+                    <ImagenInvitacion />
+                    <div className="md:w-1/2 w-full flex flex-col  items-center  my-4">
+                        <h2 className="text-center text-blue text-sans text-xl font-semibold">
+                            Llena el formulario para iniciar <br />
+                            en EducaTec
+                        </h2>
+                        <Formulario />
+                    </div>
+                </MainCenterItems>
+            </Wrapper>
             <Footer />
-        </Wrapper>
+        </>
     );
 };
 
@@ -52,7 +55,7 @@ const Formulario = () => {
 
     const onSubmit = async (data) => {
         console.log(data);
-        await registerUser(data, history)
+        await registerUser(data, history);
     };
 
     return (

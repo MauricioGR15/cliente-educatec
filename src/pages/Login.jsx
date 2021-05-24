@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import {  Link, useHistory, useLocation } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 import lottie from "lottie-web";
 import CoffeeComputer from "../animations/CoffeeComputer";
 import LoginSvg from "../assets/svg/Login.svg";
@@ -9,14 +9,12 @@ import Wrapper from "../layout/Wrapper";
 import { useForm } from "react-hook-form";
 import Textfield from "../components/Textfield";
 import globalContext from "../context/globalContext";
+import MainCenterItems from "../layout/MainCenterItems";
 
 const Login = () => {
-
     const GlobalContext = useContext(globalContext);
     const { login } = GlobalContext;
-    const history = useHistory()
-
-
+    const history = useHistory();
 
     useEffect(() => {
         lottie.loadAnimation({
@@ -26,14 +24,16 @@ const Login = () => {
     }, []);
 
     return (
-        <Wrapper>
+        <>
             <NavbarLogin />
-            <main className="w-full h-auto md:h-5/6 flex items-start flex-wrap justify-center">
-                <SeccionRegistrar />
-                <SeccionIngresar login={login} history={history} />
-            </main>
-            <Footer />
-        </Wrapper>
+            <Wrapper>
+                <MainCenterItems>
+                    <SeccionRegistrar />
+                    <SeccionIngresar login={login} history={history} />
+                </MainCenterItems>
+                <Footer />
+            </Wrapper>
+        </>
     );
 };
 
@@ -60,18 +60,14 @@ const SeccionRegistrar = () => (
     </div>
 );
 
-const SeccionIngresar = ({login, history}) => {
-
-    
-   
-
+const SeccionIngresar = ({ login, history }) => {
     const {
         register,
         handleSubmit,
         formState: { errors },
     } = useForm();
     const onSubmit = (data) => {
-        login(data, history)
+        login(data, history);
     };
 
     return (
@@ -109,7 +105,7 @@ const SeccionIngresar = ({login, history}) => {
                 >
                     Contraseña
                 </Textfield>
-               
+
                 <button
                     type="submit"
                     className="h-14 w-40 p-4 rounded-full bg-blue focus:outline-none shadow-xl
