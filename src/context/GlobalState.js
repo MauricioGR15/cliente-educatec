@@ -23,6 +23,7 @@ const GlobalState = (props) => {
         await getUser(dispatch, history)
 
     };
+    
 
     return (
         <globalContext.Provider

@@ -48,7 +48,6 @@ const FilaTabla = ({ item, toggleEliminar, setSelected, togglePost }) => {
     };
 
     const onDownloadClick = () => {
-        console.log("llega");
         Axios({
             url: `api/mochila/descargar/${item.id}`,
             method: "GET",

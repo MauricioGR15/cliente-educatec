@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { BotonNuevo } from "../../components/Botones";
 import { ReactComponent as EmptySvg } from "../../assets/svg/Empty.svg";
-import { ReactComponent as LoadingIcon } from "../../assets/icons/LoadingIcon.svg";
 import useModal from "../../components/Modal/useModal";
 import Axios from "../../Axios";
 import { sortArrayAlphabetically } from "../../helpers/Util";
@@ -9,6 +8,7 @@ import VerDocumentos from "../../components/VerDocumentos";
 import ModalNuevoDocumento from "../../components/ModalNuevoDocumento";
 import ModalPost from "../../components/ModalPost";
 import ModalEliminar from '../../components/ModalEliminar'
+import LoadingSpin from '../../components/LoadingSpin'
 
 const Backpack = () => {
     const { isShowing, toggle } = useModal();
@@ -78,12 +78,7 @@ const Backpack = () => {
     );
 };
 
-const LoadingSpin = () => (
-    <div className="pt-20 flex items-center gap-2 justify-center text-3xl animate-pulse">
-        <LoadingIcon className="fill-current text-violet-dark animate-spin" />
-        <p className="font-semibold text-blue">Cargando</p>
-    </div>
-);
+
 
 const MochilaVacia = () => (
     <div className="w-full p-8 flex flex-col items-center justify-start gap-8">
