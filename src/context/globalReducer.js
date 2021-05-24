@@ -17,6 +17,11 @@ export default (state, action) => {
                 ...state,
                 selectedPost: action.payload,
             };
+        case "INICIALIZAR_MATERIAS":
+            return {
+                ...state,
+                materias: action.payload
+            }
         default:
             return {};
     }
