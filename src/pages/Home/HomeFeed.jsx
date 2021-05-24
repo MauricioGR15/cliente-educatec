@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Post } from "../../components/Posts";
 import PostsWrapper from "../../layout/PostsWrapper";
-import Wrapper from "../../layout/Wrapper";
 import Axios from "../../Axios";
 
 const HomeFeed = () => {

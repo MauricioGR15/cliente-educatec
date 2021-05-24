@@ -4,7 +4,6 @@ import Axios from "../../Axios";
 import { useParams } from "react-router-dom";
 import Post, { Comment } from "../../components/Posts";
 import LoadingSpin from "../../components/LoadingSpin";
-import { ContainerCard } from "../../components/Posts";
 import { TextArea } from "../../components/Textfield";
 import { useForm } from "react-hook-form";
 import useModal from "../../components/Modal/useModal";

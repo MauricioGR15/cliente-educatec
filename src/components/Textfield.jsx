@@ -5,7 +5,7 @@ const Textfield = ({ name, type, register, errors, validations, children }) => {
     return (
         <div
             className="w-full text-violet transition duration-500 ease-in-out transform hover:translate-y-1 hover:scale-110 
-                        focus:translate-y-1 focus:scale-110"
+                        focus:translate-y-1 focus:scale-105"
         >
             <label htmlFor={name} className="pl-6">
                 {children}
