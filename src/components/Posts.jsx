@@ -40,18 +40,18 @@ export const Comment = ({ comment }) => {
 
     return (
     <ContainerCard>
-        <div className="w-full flex justify-between border-gray py-1">
+        <div className="w-full flex justify-between items-center border-gray py-1">
             <div className="flex items-center">
                 <img
                     className="rounded-full border-2 border-mint sm:mx-2 w-8"
                     src={comment.autor.foto}
                     alt={`Foto de perfil de ${comment.autor.nombre}`}
                 />
-                <p className="text-blue text-left font-semibold text-sm sm:text-base">
+                <p className="text-blue text-left font-semibold text-xs">
                     {`${comment.autor.nombre}`}
                 </p>
             </div>
-            <p className="text-xs xl:text-xs text-mint-dark">{comment.fecha}</p>
+            <p className="text-xs text-mint-dark">{comment.fecha}</p>
         </div>
         <div className="text-blue font-work font-medium py-2">
             {comment.texto}
@@ -98,12 +98,12 @@ const HeaderCard = ({ nombre, semestre, materia, foto }) => {
                     src={foto}
                     alt={`Foto de perfil de ${nombre}`}
                 />
-                <p className="text-blue text-left font-semibold text-sm sm:text-base">
+                <p className="text-blue text-left font-semibold text-xs">
                     {`${nombre} • ${semestre}`}
                 </p>
             </div>
 
-            <p className="text-mint text-sm sm:text-base font-semibold">
+            <p className="text-mint text-xs font-semibold text-right">
                 {materia}
             </p>
         </div>
@@ -112,7 +112,7 @@ const HeaderCard = ({ nombre, semestre, materia, foto }) => {
 
 const SubHeaderCard = ({ fecha, subtitulo }) => {
     return (
-        <div className="w-full flex justify-between py-1">
+        <div className="w-full flex justify-between py-2">
             <p className="text-xs xl:text-xs text-mint-dark">{subtitulo}</p>
             <p className="text-xs xl:text-xs text-mint-dark">{fecha}</p>
         </div>

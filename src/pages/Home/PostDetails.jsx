@@ -47,7 +47,8 @@ const RenderPostDetails = ({ detalle, isShowing, toggle, setDetalle }) => (
         <Post post={detalle} />
         <button
             onClick={toggle}
-            className="flex items-center justify-center gap-2 h-auto w-32 p-4 self-end rounded-full bg-violet focus:outline-none shadow-xl
+            className="fixed right-2 bottom-2 md:right-1/4 md:bottom-12
+            flex items-center justify-center gap-2 h-auto w-32 p-4 self-end rounded-full bg-violet focus:outline-none shadow-xl
                             transition duration-500 ease-in-out transform hover:translate-y-1 hover:scale-110 hover:bg-mint"
         >
             <CommentaryIcon className="fill-current text-white" />

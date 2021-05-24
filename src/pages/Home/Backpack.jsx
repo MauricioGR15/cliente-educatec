@@ -49,7 +49,7 @@ const Backpack = () => {
     };
 
     return (
-        <div>
+        <div className='w-full'>
             <div className="w-full flex items-center gap-16 px-4">
                 <BotonNuevo onClick={toggle} />
                 <h2 className="text-blue font-semibold text-2xl">Mi mochila</h2>

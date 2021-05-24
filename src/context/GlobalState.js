@@ -1,8 +1,9 @@
-import React, { useReducer } from "react";
+import React, {useReducer} from "react";
 import globalContext from "./globalContext";
 import globalReducer from "./globalReducer";
-import Axios, { getCSRFCookie, addHeaders, addAuthHeader } from "../Axios";
-import { toast } from "react-toastify";
+import Axios, {getCSRFCookie, addHeaders, addAuthHeader} from "../Axios";
+import {toast} from "react-toastify";
+import {sortArrayAlphabetically} from "../helpers/Util";
 
 const GlobalState = (props) => {
     const initialState = {
@@ -10,6 +11,7 @@ const GlobalState = (props) => {
         session: false,
         usuario: null,
         postSelected: null,
+        materias: null,
     };
 
     const [state, dispatch] = useReducer(globalReducer, initialState);
@@ -21,9 +23,10 @@ const GlobalState = (props) => {
         const token = localStorage.getItem('Token')
         addAuthHeader(token)
         await getUser(dispatch, history)
+        await getMaterias(dispatch)
 
     };
-    
+
 
     return (
         <globalContext.Provider
@@ -31,6 +34,7 @@ const GlobalState = (props) => {
                 usuario: state.usuario,
                 session: state.session,
                 postSelected: state.postSelected,
+                materias: state.materias,
                 login,
             }}
         >
@@ -39,6 +43,16 @@ const GlobalState = (props) => {
     );
 };
 
+const getMaterias = (dispatch) => {
+    Axios.get('api/materias')
+        .then(response => {
+            sortArrayAlphabetically(response.data)
+            dispatch({
+                type: "INICIALIZAR_MATERIAS",
+                payload: response.data
+            })
+        })
+}
 
 const signIn = async (dispatch, usuario) => {
     Axios.post("api/login", usuario)
@@ -46,9 +60,9 @@ const signIn = async (dispatch, usuario) => {
             dispatch({
                 type: "INICIAR_SESION",
                 payload: response.data,
-            }); 
+            });
         })
-        .catch(({ response }) => {
+        .catch(({response}) => {
             if (response.data.mensaje) {
                 toast.error(response.data.mensaje);
             } else {
@@ -59,13 +73,13 @@ const signIn = async (dispatch, usuario) => {
 
 const getUser = async (dispatch, history) => {
     Axios.get('api/user')
-    .then(({data})=> {
-        dispatch({
-            type: "OBTENER_USUARIO",
-            payload: data
+        .then(({data}) => {
+            dispatch({
+                type: "OBTENER_USUARIO",
+                payload: data
+            })
+            history.push("/home");
         })
-        history.push("/home");
-    })
 }
 
 

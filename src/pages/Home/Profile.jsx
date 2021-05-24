@@ -1,11 +1,12 @@
 import React from 'react'
-import Navbar from '../../components/Navbar'
+
+import PostsWrapper from "../../layout/PostsWrapper";
 
 const Profile = () => {
     return (
-        <div>
-            <Navbar/>
-        </div>
+        <PostsWrapper>
+            Aqui van las cosas del perfil
+        </PostsWrapper>
     )
 }
 

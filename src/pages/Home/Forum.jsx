@@ -10,11 +10,11 @@ import globalContext from "../../context/globalContext";
 import Select from "../../components/Select";
 import {ReactComponent as QuestionIcon} from '../../assets/icons/QuestionIcon.svg'
 import useModal from "../../components/Modal/useModal";
+import LoadingSpin from "../../components/LoadingSpin";
 
 const Forum = () => {
 
-
-    const [posts, setPosts] = useState([]);
+    const [posts, setPosts] = useState(null);
     const {isShowing, toggle} = useModal()
 
     useEffect(() => {
@@ -28,9 +28,13 @@ const Forum = () => {
 
     return (
         <PostsWrapper>
-            {posts.map((post, key) => {
-                return <Post key={key} post={post}/>;
-            })}
+            {
+                posts ?
+                    posts.map((post, key) => {
+                        return <Post key={key} post={post}/>;
+                    })
+                    : <LoadingSpin/>
+            }
             <button
                 onClick={toggle}
                 className='fixed right-2 bottom-2 md:right-1/4 md:bottom-12 bg-mint h-16 w-16
@@ -39,7 +43,7 @@ const Forum = () => {
             >
                 <QuestionIcon className='fill-current text-white'/>
             </button>
-            <ModalNuevaPregunta isShowing={isShowing} toggle={toggle} />
+            <ModalNuevaPregunta isShowing={isShowing} toggle={toggle}/>
         </PostsWrapper>
     );
 }

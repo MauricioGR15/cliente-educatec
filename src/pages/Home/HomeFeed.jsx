@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { Post } from "../../components/Posts";
+import React, {useState, useEffect} from "react";
+import {Post} from "../../components/Posts";
 import PostsWrapper from "../../layout/PostsWrapper";
 import Axios from "../../Axios";
+import LoadingSpin from "../../components/LoadingSpin";
 
 const HomeFeed = () => {
     const [posts, setPosts] = useState([]);
@@ -14,9 +15,11 @@ const HomeFeed = () => {
 
     return (
         <PostsWrapper>
-            {posts.map((post, key) => {
-                return <Post key={key} post={post} setPosts={setPosts} />;
-            })}
+            {
+                posts ?
+                    posts.map((post, key) => {
+                        return <Post key={key} post={post} setPosts={setPosts}/>;
+                    }) : <LoadingSpin/>}
         </PostsWrapper>
     );
 };
