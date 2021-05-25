@@ -61,6 +61,7 @@ const Backpack = () => {
                 isShowing={isShowing}
                 toggle={toggle}
                 materias={materias}
+                setDocumentos={setDocumentos}
             />
             <ModalEliminar
                 setDocumentos={setDocumentos}

@@ -10,6 +10,7 @@ const Axios = axios.create({
 });
 
 export async function getCSRFCookie() {
+    document.cookie = 'X-XSRF-COOKIE= "";expires= Thu, 21 Aug 2014 20:00:00 UTC'
     Axios.get("/sanctum/csrf-cookie");
 }
 
@@ -28,8 +29,8 @@ export function addAuthHeader(token) {
 }
 
 function getCookie(name) {
-    var re = new RegExp(name + "=([^;]+)");
-    var value = re.exec(document.cookie);
+    let re = new RegExp(name + "=([^;]+)");
+    let value = re.exec(document.cookie);
     return value != null ? unescape(value[1]) : null;
 }
 

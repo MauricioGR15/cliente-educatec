@@ -14,7 +14,7 @@ export const registerUser = async (datos, history) => {
         });
 };
 
-export const uploadFile = async (datos, toggle, reset) => {
+export const uploadFile = async (datos, toggle, reset, setDocumentos) => {
     const body = {
         ...datos,
         archivo: datos.archivo[0],
@@ -28,7 +28,8 @@ export const uploadFile = async (datos, toggle, reset) => {
 
     Axios.post("api/mochila/archivo", formData)
         .then(({ data }) => {
-            toast.success(data.Mensaje);
+            toast.success('Se ha subido tu documento con éxito');
+            setDocumentos(prevState => [...prevState, data])
             toggle();
             reset();
         })

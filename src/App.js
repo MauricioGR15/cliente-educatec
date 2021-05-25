@@ -17,6 +17,7 @@ import globalContext from "./context/globalContext";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import PostDetails from "./pages/Home/PostDetails";
+import ForumDetails from "./pages/Home/ForumDetails";
 
 function App() {
     return (
@@ -30,9 +31,10 @@ function App() {
                             <Home>
                                 <Route exact path="/home" component={HomeFeed} />
                                 <Route path="/mochila" component={Backpack} />
-                                <Route path="/foro" component={Forum} />
+                                <Route exact path="/foro" component={Forum} />
                                 <Route path="/perfil" component={Profile} />
                                 <Route path='/home/:id' component={PostDetails} />
+                                <Route path='/foro/:id' component={ForumDetails}/>
                             </Home>
                         </PrivateRoute>
                     </Switch>

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import PostsWrapper from "../../layout/PostsWrapper";
 import Axios from "../../Axios";
 import { useParams } from "react-router-dom";
-import Post, { Comment } from "../../components/Posts";
+import Post from "../../components/Posts";
 import LoadingSpin from "../../components/LoadingSpin";
 import { TextArea } from "../../components/Textfield";
 import { useForm } from "react-hook-form";
@@ -14,6 +14,7 @@ import {
     ModalBody,
 } from "../../components/Modal/Modal";
 import { toast } from "react-toastify";
+import Comment from "../../components/Comment";
 
 const PostDetails = () => {
     const { id } = useParams();
@@ -42,12 +43,12 @@ const PostDetails = () => {
     );
 };
 
-const RenderPostDetails = ({ detalle, isShowing, toggle, setDetalle }) => (
+export const RenderPostDetails = ({ detalle, isShowing, toggle, setDetalle }) => (
     <>
         <Post post={detalle} />
         <button
             onClick={toggle}
-            className="fixed right-2 bottom-2 md:right-1/4 md:bottom-12
+            className="fixed right-2 bottom-2 md:right-40 md:bottom-12
             flex items-center justify-center gap-2 h-auto w-32 p-4 self-end rounded-full bg-violet focus:outline-none shadow-xl
                             transition duration-500 ease-in-out transform hover:translate-y-1 hover:scale-110 hover:bg-mint"
         >
@@ -73,7 +74,7 @@ const RenderPostDetails = ({ detalle, isShowing, toggle, setDetalle }) => (
     </>
 );
 
-const ModalComentario = ({ id, isShowing, toggle, setDetalle }) => {
+export const ModalComentario = ({ id, isShowing, toggle, setDetalle, apiUrl }) => {
     const {
         register,
         handleSubmit,
@@ -82,13 +83,14 @@ const ModalComentario = ({ id, isShowing, toggle, setDetalle }) => {
     } = useForm();
 
     const onSubmit = (data) => {
-        Axios.post(`api/comentar/post/${id}`, data).then(() => {
+        Axios.post(`api/comentar/post/${id}`, data).then((response) => {
             toast.success("Tu comentario se realizó con éxito");
             toggle();
             reset();
             setDetalle((prevState) => {
                 return {
                     ...prevState,
+                    Comentarios : [...prevState.Comentarios, response.data]
                 };
             });
         });

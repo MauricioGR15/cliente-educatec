@@ -3,7 +3,7 @@ import {
     ModalContainer,
     ModalHeader,
     ModalBody,
-} from "../components/Modal/Modal";
+} from "./Modal/Modal";
 import {uploadFile} from "../controllers/SessionController";
 import Textfield from "../components/Textfield";
 import Select from "../components/Select";
@@ -11,12 +11,12 @@ import {useForm} from 'react-hook-form'
 
 const semestres = ["", 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
-const ModalNuevoDocumento = ({ isShowing, toggle, materias }) => {
+const ModalNuevoDocumento = ({isShowing, toggle, materias, setDocumentos}) => {
     const {
         register,
         handleSubmit,
         reset,
-        formState: { errors },
+        formState: {errors},
     } = useForm();
 
     const onClose = () => {
@@ -25,12 +25,12 @@ const ModalNuevoDocumento = ({ isShowing, toggle, materias }) => {
     };
 
     const onSubmit = (data) => {
-        uploadFile(data, toggle, reset);
+        uploadFile(data, toggle, reset, setDocumentos);
     };
 
     return (
         <ModalContainer isShowing={isShowing}>
-            <ModalHeader title="Agrega un documento" hide={onClose} />
+            <ModalHeader title="Agrega un documento" hide={onClose}/>
             <ModalBody description="Selecciona un archivo para agregar a tu mochila">
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="flex flex-col items-center p-6 gap-4">

@@ -1,7 +1,7 @@
 import React from 'react'
 import Axios from "../Axios";
-import { toast } from "react-toastify";
-import { ReactComponent as TrashIcon } from "../assets/icons/TrashIcon.svg";
+import {toast} from "react-toastify";
+import {ReactComponent as TrashIcon} from "../assets/icons/TrashIcon.svg";
 import {
     ModalContainer,
     ModalBody,
@@ -9,26 +9,27 @@ import {
 } from "../components/Modal/Modal";
 
 const ModalEliminar = ({
-    hide,
-    isShowing,
-    setDocumentos,
-    selectedDelete,
-}) => {
+                           hide,
+                           isShowing,
+                           setDocumentos,
+                           selectedIdDocument,
+                       }) => {
     const acceptDelete = () => {
-        Axios.delete(`api/mochila/archivo/${selectedDelete}`).then(() => {
+        Axios.delete(`api/mochila/archivo/${selectedIdDocument}`).then(() => {
             setDocumentos((prevState) => {
                 return prevState.filter(
-                    (element) => element.id !== selectedDelete
+                    (element) => element.id !== selectedIdDocument
                 );
             });
             toast.success("Se eliminó el archivo con éxito");
             hide();
-        });
+        })
+            .catch(error => toast.error('Ha ocurrido un error el eliminar el documento'))
     };
 
     return (
         <ModalContainer isShowing={isShowing}>
-            <ModalHeader title={"Eliminar documento"} hide={hide} />
+            <ModalHeader title={"Eliminar documento"} hide={hide}/>
             <ModalBody
                 description={
                     "Si aceptas eliminar este documento, dejará de aparecer en tu mochila. ¿Estás seguro?"
@@ -40,7 +41,7 @@ const ModalEliminar = ({
                         className="h-auto w-32 py-3 px-4 text-center rounded-full text-white bg-red focus:outline-none shadow-xl flex
                     transition duration-500 ease-in-out  hover:bg-red-dark"
                     >
-                        <TrashIcon className="fill-current" />
+                        <TrashIcon className="fill-current"/>
                         Eliminar
                     </button>
                     <button
