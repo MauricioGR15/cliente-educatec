@@ -38,19 +38,19 @@ export const ContainerCard = ({ children }) => (
 
 const HeaderCard = ({ nombre, semestre, materia, foto }) => {
     return (
-        <div className="w-full flex justify-between border-b border-gray py-1">
+        <div className="w-full flex justify-between items-center border-b border-gray pb-1">
             <div className="flex items-center">
-                <img
-                    className="rounded-full border-2 border-mint sm:mx-2 w-8"
-                    src={foto}
-                    alt={`Foto de perfil de ${nombre}`}
+                <div
+                    className="rounded-full mr-1 border-2 border-mint w-8 h-8 bg-center bg-cover"
+                    style={{backgroundImage: `url(${foto})`}}
+                    alt="Foto de perfil"
                 />
-                <p className="text-blue text-left font-semibold text-xs">
+                <p className="text-blue text-left font-semibold text-xs ">
                     {`${nombre} • ${semestre}`}
                 </p>
             </div>
 
-            <p className="text-mint text-xs font-semibold text-right">
+            <p className="w-1/2 text-mint text-xs font-semibold text-right">
                 {materia}
             </p>
         </div>

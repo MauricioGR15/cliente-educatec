@@ -22,9 +22,9 @@ const Profile = () => {
 
     const onSubmit = (data) => {
         console.log(data)
-        const formData = new FormData()
-        Object.keys(data).forEach((key) => formData.append(key, data[key]));
-        Axios.post(`api/user`, formData)
+        // const formData = new FormData()
+        // Object.keys(data).forEach((key) => formData.append(key, data[key]));
+        Axios.post(`api/user`, data)
             .then(() => {
                 toast.success('Se ha actualizado tu foto de perfil con éxito')
                 reset()
@@ -38,21 +38,27 @@ const Profile = () => {
 
     return (
         <PostsWrapper>
-            <div className='w-full h-full flex gap-4'>
+            <div className='w-full h-full flex gap-4 shadow-lg p-4 rounded-lg'>
 
-                <img
+                {/*<img*/}
+                {/*    onClick={() => toggle()}*/}
+                {/*    src={usuario.Foto}*/}
+                {/*    alt={`Foto de perfil de ${usuario.Nombre}`}*/}
+                {/*    className='h-24 rounded-full border-4 border-violet cursor-pointer'*/}
+                {/*/>*/}
+                <div
                     onClick={() => toggle()}
-                    src={usuario.Foto}
-                    alt={`Foto de perfil de ${usuario.Nombre}`}
-                    className='h-24 rounded-full border-4 border-violet cursor-pointer'
+                    className="rounded-full border-2 border-violet h-24 w-24 bg-center bg-cover cursor-pointer"
+                    style={{backgroundImage: `url(${usuario.Foto})`}}
+                    alt="Foto de perfil"
                 />
 
 
-                <div className='flex flex-col w-full justify-center'>
+                <div className='flex flex-col w-auto justify-center'>
                     <p className='text-sm text-mint font-semibold tracking-widest'>
                         {usuario.NoControl}
                     </p>
-                    <p className='text-2xl text-blue'>
+                    <p className='text-xl text-blue'>
                         {usuario.Nombre}
                     </p>
                 </div>

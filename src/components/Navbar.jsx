@@ -13,9 +13,9 @@ const Navbar = () => {
             <ul className="flex justify-end items-center pr-8">
                 <li>
                     <NavLink to="/perfil" className="flex items-center p-3">
-                        <img
-                            className="rounded-full border-2 border-mint sm:mx-2 w-8"
-                            src={usuario.Foto}
+                        <div
+                            className="rounded-full border-2 border-mint sm:mx-2 w-8 h-8 bg-center bg-cover"
+                            style={{backgroundImage: `url(${usuario.Foto})`}}
                             alt="Foto de perfil"
                         />
                         <p className="text-white hidden sm:block">

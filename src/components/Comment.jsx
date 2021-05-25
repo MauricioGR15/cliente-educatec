@@ -24,10 +24,10 @@ const Comment = ({comment}) => {
 const CommentHeader = ({comment}) => (
     <div className="w-full flex justify-between items-center border-gray py-1">
         <div className="flex items-center">
-            <img
-                className="rounded-full border-2 border-mint sm:mx-2 w-8"
-                src={comment.autor.foto}
-                alt={`Foto de perfil de ${comment.autor.nombre}`}
+            <div
+                className="rounded-full border-2 border-mint sm:mx-2 w-8 h-8 bg-center bg-cover"
+                style={{backgroundImage: `url(${comment.autor.foto})`}}
+                alt="Foto de perfil"
             />
             <p className="text-blue text-left font-semibold text-xs">
                 {`${comment.autor.nombre}`}
