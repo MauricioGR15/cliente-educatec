@@ -38,7 +38,7 @@ const CommentHeader = ({comment}) => (
 )
 
 const CommentText = ({comment}) => (
-    <div className="text-blue font-work font-medium py-2">
+    <div className="text-blue font-work font-medium py-2 whitespace-pre-wrap">
         {comment.texto}
     </div>
 )

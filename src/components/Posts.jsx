@@ -68,9 +68,9 @@ const SubHeaderCard = ({ fecha, subtitulo }) => {
 
 const DescriptionCard = ({ descripcion }) => {
     return (
-        <div className="text-blue font-work font-medium py-2">
+        <pre className="text-blue font-work font-medium py-2 whitespace-pre-wrap">
             {descripcion}
-        </div>
+        </pre>
     );
 };
 
