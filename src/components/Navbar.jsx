@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import { ReactComponent as HomeIcon } from "../assets/icons/HomeIcon.svg";
 import { ReactComponent as BackpackIcon } from "../assets/icons/BackpackIcon.svg";
 import { ReactComponent as ForoIcon } from "../assets/icons/ForoIcon.svg";
-import ProfilePhoto from "../assets/images/profile.jpg";
 import { NavLink } from "react-router-dom";
 import globalState from "../context/globalContext";
 
