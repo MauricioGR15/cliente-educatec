@@ -21,9 +21,9 @@ const Profile = () => {
     } = useForm();
 
     const onSubmit = (data) => {
-        console.log(data)
-        // const formData = new FormData()
-        // Object.keys(data).forEach((key) => formData.append(key, data[key]));
+        const formData = new FormData()
+        formData.append('Foto', data.Foto['0'])
+        Object.keys(data).forEach((key) => formData.append(key, data[key]));
         Axios.post(`api/user`, data)
             .then(() => {
                 toast.success('Se ha actualizado tu foto de perfil con éxito')
